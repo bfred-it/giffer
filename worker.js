@@ -1,0 +1,1 @@
+import 'animated_gif/src/Animated_GIF.worker.js';
