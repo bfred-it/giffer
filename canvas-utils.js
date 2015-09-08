@@ -9,12 +9,18 @@ function getCanvas (w, h) {
 	if (h) {
 		canvas.height = h;
 	}
-	return ctx;
+	return {
+		el: canvas,
+		ctx: ctx
+	};
 }
-function getCanvasFromImage (img) {
-	var ctx = getCanvas(img.width, img.height);
-	ctx.drawImage(img, 0, 0, img.width, img.height);
-	return ctx;
+function getCanvasFromImage (img, type) {
+	var canvas = getCanvas(img.width, img.height);
+	canvas.ctx.drawImage(img, 0, 0, img.width, img.height);
+	if (type === 'ctx') {
+		return canvas.ctx;
+	}
+	return canvas.el;
 }
 
 function drawImageFillArea (ctx, source, x, y, w, h, origWidth, origHeight) {
